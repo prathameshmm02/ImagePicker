@@ -15,7 +15,11 @@
  */
 package com.github.dhaval2404.imagepicker.util
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Matrix
+import android.graphics.Paint
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -36,7 +40,7 @@ object ImageUtil {
         reqWidth: Float,
         reqHeight: Float,
         compressFormat: Bitmap.CompressFormat,
-        destinationPath: String
+        destinationPath: String,
     ): File {
         var fileOutputStream: FileOutputStream? = null
         val file = File(destinationPath).parentFile
@@ -49,7 +53,7 @@ object ImageUtil {
             decodeSampledBitmapFromFile(imageFile, reqWidth, reqHeight)?.compress(
                 compressFormat,
                 100,
-                fileOutputStream
+                fileOutputStream,
             )
         } finally {
             if (fileOutputStream != null) {
@@ -65,7 +69,7 @@ object ImageUtil {
     private fun decodeSampledBitmapFromFile(
         imageFile: File,
         reqWidth: Float,
-        reqHeight: Float
+        reqHeight: Float,
     ): Bitmap? {
         // First decode with inJustDecodeBounds=true to check dimensions
 
@@ -132,15 +136,22 @@ object ImageUtil {
         val canvas = Canvas(scaledBitmap!!)
         canvas.setMatrix(scaleMatrix)
         canvas.drawBitmap(
-            bmp!!, middleX - bmp.width / 2,
-            middleY - bmp.height / 2, Paint(Paint.FILTER_BITMAP_FLAG)
+            bmp!!,
+            middleX - bmp.width / 2,
+            middleY - bmp.height / 2,
+            Paint(Paint.FILTER_BITMAP_FLAG),
         )
         bmp.recycle()
 
         val matrix = Matrix()
         scaledBitmap = Bitmap.createBitmap(
-            scaledBitmap, 0, 0, scaledBitmap.width,
-            scaledBitmap.height, matrix, true
+            scaledBitmap,
+            0,
+            0,
+            scaledBitmap.width,
+            scaledBitmap.height,
+            matrix,
+            true,
         )
 
         return scaledBitmap
@@ -149,7 +160,7 @@ object ImageUtil {
     private fun calculateInSampleSize(
         options: BitmapFactory.Options,
         reqWidth: Int,
-        reqHeight: Int
+        reqHeight: Int,
     ): Int {
         // Raw height and width of image
         val height = options.outHeight
@@ -175,7 +186,7 @@ object ImageUtil {
      */
     private fun canUseForInBitmap(
         candidate: Bitmap,
-        targetOptions: BitmapFactory.Options
+        targetOptions: BitmapFactory.Options,
     ): Boolean {
         // From Android 4.4 (KitKat) onward we can re-use if the byte size of
         // the new bitmap is smaller than the reusable bitmap candidate

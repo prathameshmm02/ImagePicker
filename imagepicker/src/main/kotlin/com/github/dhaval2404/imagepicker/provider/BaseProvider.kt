@@ -17,8 +17,11 @@ abstract class BaseProvider(protected val activity: ImagePickerActivity) :
     ContextWrapper(activity) {
 
     fun getFileDir(path: String?): File {
-        return if (path != null) File(path)
-        else getExternalFilesDir(Environment.DIRECTORY_DCIM) ?: activity.filesDir
+        return if (path != null) {
+            File(path)
+        } else {
+            getExternalFilesDir(Environment.DIRECTORY_DCIM) ?: activity.filesDir
+        }
     }
 
     /**

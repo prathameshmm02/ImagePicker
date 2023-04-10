@@ -123,13 +123,12 @@ class MainActivity : AppCompatActivity() {
             .crop()
             // User can only select image from Gallery
             .galleryOnly()
-
             .galleryMimeTypes( // no gif images at all
                 mimeTypes = arrayOf(
                     "image/png",
                     "image/jpg",
-                    "image/jpeg"
-                )
+                    "image/jpeg",
+                ),
             )
             // Image resolution will be less than 1080 x 1920
             .maxResultSize(1080, 1920)
@@ -165,7 +164,6 @@ class MainActivity : AppCompatActivity() {
             .saveDir(File(cacheDir, "ImagePicker"))
             //  Path: /data/data/package/files/ImagePicker
             .saveDir(File(filesDir, "ImagePicker"))
-
             // Below saveDir path will not work, So do not use it
             //  Path: /storage/sdcard0/DCIM
             //  .saveDir(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM))
@@ -173,7 +171,6 @@ class MainActivity : AppCompatActivity() {
             //  .saveDir(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES))
             //  Path: /storage/sdcard0/ImagePicker
             //  .saveDir(File(Environment.getExternalStorageDirectory(), "ImagePicker"))
-
             .createIntent { intent -> startForCameraImageResult.launch(intent) }
     }
 

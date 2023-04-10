@@ -198,8 +198,11 @@ class CompressionProvider(activity: ImagePickerActivity) : BaseProvider(activity
         val compressFile: File? = FileUtil.getImageFile(fileDir = mFileDir, extension = extension)
         return if (compressFile != null) {
             ImageUtil.compressImage(
-                file, maxWidth.toFloat(), maxHeight.toFloat(),
-                format, compressFile.absolutePath
+                file,
+                maxWidth.toFloat(),
+                maxHeight.toFloat(),
+                format,
+                compressFile.absolutePath,
             )
         } else {
             null
@@ -226,7 +229,7 @@ class CompressionProvider(activity: ImagePickerActivity) : BaseProvider(activity
             intArrayOf(240, 320), // 0.15 Megapixel
             intArrayOf(120, 160), // 0.08 Megapixel
             intArrayOf(60, 80), // 0.04 Megapixel
-            intArrayOf(30, 40) // 0.02 Megapixel
+            intArrayOf(30, 40), // 0.02 Megapixel
         )
     }
 

@@ -8,7 +8,11 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 
 /**
  * This file was taken from
@@ -61,12 +65,16 @@ object FileUriUtils {
             }
         } else if (uri.scheme.equals(ContentResolver.SCHEME_CONTENT)) {
             // Return the remote address
-            return if (isGooglePhotosUri(uri)) uri.lastPathSegment else getDataColumn(
-                context,
-                uri,
-                null,
-                null
-            )
+            return if (isGooglePhotosUri(uri)) {
+                uri.lastPathSegment
+            } else {
+                getDataColumn(
+                    context,
+                    uri,
+                    null,
+                    null,
+                )
+            }
         } else if (uri.scheme.equals(ContentResolver.SCHEME_FILE)) {
             return uri.path
         }
@@ -77,9 +85,8 @@ object FileUriUtils {
         context: Context,
         uri: Uri?,
         selection: String?,
-        selectionArgs: Array<String>?
+        selectionArgs: Array<String>?,
     ): String? {
-
         var cursor: Cursor? = null
         val column = "_data"
         val projection = arrayOf(column)
@@ -114,7 +121,8 @@ object FileUriUtils {
             id = id.split(":")[1]
         }
         val contentUri = ContentUris.withAppendedId(
-            Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id)
+            Uri.parse("content://downloads/public_downloads"),
+            java.lang.Long.valueOf(id),
         )
         return getDataColumn(context, contentUri, null, null)
     }
@@ -144,7 +152,6 @@ object FileUriUtils {
     }
 
     private fun getFilePath(context: Context, uri: Uri): String? {
-
         var cursor: Cursor? = null
         val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
 

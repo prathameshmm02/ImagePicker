@@ -33,7 +33,7 @@ object ExifDataCopier {
                 "GPSLongitudeRef",
                 "Make",
                 "Model",
-                "Orientation"
+                "Orientation",
             )
             for (attribute in attributes) {
                 setIfNotNull(oldExif, newExif, attribute)

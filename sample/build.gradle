@@ -22,6 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
+    lintOptions {
+        warning 'NotificationPermission'
+    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -31,9 +37,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-    buildFeatures {
-        viewBinding true
     }
     namespace 'com.github.dhaval2404.imagepicker.sample'
 }

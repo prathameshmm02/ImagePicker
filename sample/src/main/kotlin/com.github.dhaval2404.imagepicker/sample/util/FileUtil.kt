@@ -44,27 +44,21 @@ object FileUtil {
         val fileSize = getFileSize(document.length())
 
         return StringBuilder()
-
             .append("Resolution: ")
             .append("${resolution.first}x${resolution.second}")
             .append("\n\n")
-
             .append("Modified: ")
             .append(modified)
             .append("\n\n")
-
             .append("File Size: ")
             .append(fileSize)
             .append("\n\n")
-
             /*.append("File Name: ")
             .append(getFileName(context.contentResolver, uri))
             .append("\n\n")*/
-
             .append("File Path: ")
             .append(filePath)
             .append("\n\n")
-
             .append("Uri Path: ")
             .append(uri.toString())
             .toString()
@@ -120,15 +114,12 @@ object FileUtil {
             .append("Resolution: ")
             .append("${resolution.first}x${resolution.second}")
             .append("\n")
-
             .append("File Size: ")
             .append(getFileSize(file.length()))
             .append("\n")
-
             .append("File Name: ")
             .append(file.name)
             .append("\n")
-
             .append("File Path: ")
             .append(file.absoluteFile)
             .toString()

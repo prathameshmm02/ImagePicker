@@ -20,7 +20,7 @@ import com.github.dhaval2404.imagepicker.R
 class GalleryProvider(
     activity: ImagePickerActivity,
     private val galleryLauncher: ActivityResultLauncher<PickVisualMediaRequest>,
-    private val galleryWithMimetypesLauncher: ActivityResultLauncher<Array<String>>
+    private val galleryWithMimetypesLauncher: ActivityResultLauncher<Array<String>>,
 ) :
     BaseProvider(activity) {
 
@@ -54,9 +54,9 @@ class GalleryProvider(
             galleryLauncher.launch(
                 PickVisualMediaRequest(
                     ActivityResultContracts.PickVisualMedia.SingleMimeType(
-                        mimeTypes[0]
-                    )
-                )
+                        mimeTypes[0],
+                    ),
+                ),
             )
         } else {
             galleryWithMimetypesLauncher.launch(mimeTypes)

@@ -33,7 +33,7 @@ class CameraProvider(activity: ImagePickerActivity, private val cameraLauncher: 
          * Permission Require for Image Capture using Camera
          */
         private val REQUIRED_PERMISSIONS = arrayOf(
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA,
         )
 
         private const val PERMISSION_INTENT_REQ_CODE = 4282
@@ -101,7 +101,7 @@ class CameraProvider(activity: ImagePickerActivity, private val cameraLauncher: 
      *
      * If permission is not granted request Permission, Else start Camera Intent
      */
-    private fun checkPermission(block: ()-> Unit) {
+    private fun checkPermission(block: () -> Unit) {
         if (isPermissionGranted(this)) {
             // Permission Granted, Start Camera Intent
             block()
@@ -185,7 +185,6 @@ class CameraProvider(activity: ImagePickerActivity, private val cameraLauncher: 
      *
      * @param result true if the image save to the URI false otherwise
      */
-    @Suppress("UNUSED_PARAMETER")
     fun onActivityResult(result: Boolean) {
         if (result) {
             handleResult()
