@@ -25,7 +25,7 @@ internal object DialogHelper {
     fun showChooseAppDialog(
         context: Context,
         listener: ResultListener<ImageProvider>,
-        dismissListener: DismissListener?
+        dismissListener: DismissListener?,
     ) {
         val layoutInflater = LayoutInflater.from(context)
         val customView = layoutInflater.inflate(R.layout.dialog_choose_app, null)

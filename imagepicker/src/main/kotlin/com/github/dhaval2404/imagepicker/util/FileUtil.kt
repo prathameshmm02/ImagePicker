@@ -209,7 +209,7 @@ object FileUtil {
 
         try {
             if (uriImage.scheme.equals(ContentResolver.SCHEME_CONTENT)) {
-                //If scheme is a content
+                // If scheme is a content
                 val mime = MimeTypeMap.getSingleton()
                 extension =
                     mime.getExtensionFromMimeType(context.contentResolver.getType(uriImage))
@@ -241,7 +241,6 @@ object FileUtil {
     }
 
     fun getFileUri(context: Context, file: File): Uri? {
-
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             // authority = com.github.dhaval2404.imagepicker.provider
             val authority =

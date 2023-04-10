@@ -106,7 +106,7 @@ class ImagePickerActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         mCameraProvider?.onRequestPermissionsResult(requestCode)
@@ -120,7 +120,7 @@ class ImagePickerActivity : AppCompatActivity() {
     }
 
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { result ->
-      mCameraProvider?.onActivityResult(result)
+        mCameraProvider?.onActivityResult(result)
     }
 
     private val galleryLauncher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { result ->
